@@ -1,0 +1,22 @@
+{
+  "name": "electronic-cv",
+  "version": "1.0.0",
+  "description": "An electronic CV to help employers scout for employees",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/code-source-javascript/Electronic-CV.git"
+  },
+  "keywords": [
+    "CV"
+  ],
+  "author": "Caleb Okyere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/code-source-javascript/Electronic-CV/issues"
+  },
+  "homepage": "https://github.com/code-source-javascript/Electronic-CV#readme"
+}
