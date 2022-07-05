@@ -4,11 +4,10 @@ const PostSchema = new Schema({
   description: {
     type: SchemaTypes.String,
   },
-  image: [
-    {
-      type: SchemaTypes.String,
-    },
-  ],
+  image: {
+    type: SchemaTypes.String,
+  },
+
   like: [
     {
       type: SchemaTypes.ObjectId,

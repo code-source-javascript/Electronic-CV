@@ -25,6 +25,18 @@ const UserSchema = new Schema({
     type: SchemaTypes.ObjectId,
     ref: "CV",
   },
+  following: [
+    {
+      type: SchemaTypes.ObjectId,
+      ref: "User",
+    },
+  ],
+  followers: [
+    {
+      type: SchemaTypes.ObjectId,
+      ref: "User",
+    },
+  ],
   posts: [
     {
       type: SchemaTypes.ObjectId,
