@@ -7,6 +7,13 @@ const CVSchema = new Schema({
   lname: {
     type: SchemaTypes.String,
   },
+  othername: {
+    type: SchemaTypes.String,
+  },
+  gender: {
+    type: SchemaTypes.String,
+    enum: ["Male", "Female"],
+  },
   occupation: {
     type: SchemaTypes.String,
   },

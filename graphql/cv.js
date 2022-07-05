@@ -1,5 +1,5 @@
 import {
-  GraphQLID,
+  GraphQLEnumType,
   GraphQLList,
   GraphQLObjectType,
   GraphQLString,
@@ -33,8 +33,20 @@ const CVType = new GraphQLObjectType({
     fname: {
       type: GraphQLString,
     },
+    othername: {
+      type: GraphQLString,
+    },
     lname: {
       type: GraphQLString,
+    },
+    gender: {
+      type: new GraphQLEnumType({
+        name: "Gender",
+        values: {
+          MALE: "Male",
+          FEMALE: "Female",
+        },
+      }),
     },
     occupation: {
       type: GraphQLString,
