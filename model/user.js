@@ -21,23 +21,10 @@ const UserSchema = new Schema({
     type: SchemaTypes.String,
     required: true,
   },
-  userType: {
-    type: SchemaTypes.String,
-    enum: ["Agent", "Agency"],
-    required: true,
+  cv: {
+    type: SchemaTypes.ObjectId,
+    ref: "CV",
   },
-  following: [
-    {
-      type: SchemaTypes.ObjectId,
-      ref: "User",
-    },
-  ],
-  followers: [
-    {
-      type: SchemaTypes.ObjectId,
-      ref: "User",
-    },
-  ],
   posts: [
     {
       type: SchemaTypes.ObjectId,
