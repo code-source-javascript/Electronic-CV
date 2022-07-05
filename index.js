@@ -22,12 +22,14 @@ mongoose
   .connect(process.env.MONGOURI, {
     useNewUrlParser: true,
   })
-  .then((res) => {
+  .then(() => {
     console.log("Database is connected");
-    return res;
   })
-  .then((data) => {
+  .then(() => {
     app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT} @ ${data.uri}`);
+      console.log(`Server is running on port ${PORT} `);
     });
+  })
+  .catch((err) => {
+    throw err;
   });
