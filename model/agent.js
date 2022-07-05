@@ -5,14 +5,19 @@ const AgentSchema = new Schema({
     type: SchemaTypes.ObjectId,
     ref: "User",
   },
-  agencies: [
-    {
-      type: SchemaTypes.ObjectId,
-      ref: "Agency",
-    },
-  ],
+  role: {
+    type: SchemaTypes.String,
+  },
+  agency: {
+    type: SchemaTypes.ObjectId,
+    ref: "Agency",
+  },
   cv: {
     type: SchemaTypes.ObjectId,
     ref: "CV",
   },
 });
+
+const AgentModel = model("Agent", AgentSchema);
+
+export default AgentModel;
