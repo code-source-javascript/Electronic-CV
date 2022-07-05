@@ -1,5 +1,6 @@
 import {
   GraphQLEnumType,
+  GraphQLID,
   GraphQLList,
   GraphQLObjectType,
   GraphQLString,
@@ -30,6 +31,9 @@ const EducationType = new GraphQLObjectType({
 const CVType = new GraphQLObjectType({
   name: "CV",
   fields: {
+    _id: {
+      type: GraphQLID,
+    },
     fname: {
       type: GraphQLString,
     },

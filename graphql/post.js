@@ -1,4 +1,9 @@
-import { GraphQLList, GraphQLObjectType, GraphQLString } from "graphql";
+import {
+  GraphQLID,
+  GraphQLList,
+  GraphQLObjectType,
+  GraphQLString,
+} from "graphql";
 import { UserModel } from "../model";
 import UserType from "./user";
 
@@ -24,6 +29,9 @@ const CommentType = new GraphQLObjectType({
 const PostType = new GraphQLObjectType({
   name: "Post",
   fields: {
+    _id: {
+      type: GraphQLID,
+    },
     description: {
       type: GraphQLString,
     },
