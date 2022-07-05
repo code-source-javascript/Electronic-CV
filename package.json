@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "An electronic CV to help employers scout for employees",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +20,15 @@
   "bugs": {
     "url": "https://github.com/code-source-javascript/Electronic-CV/issues"
   },
-  "homepage": "https://github.com/code-source-javascript/Electronic-CV#readme"
+  "homepage": "https://github.com/code-source-javascript/Electronic-CV#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.5.0",
+    "mongoose": "^6.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
 }
