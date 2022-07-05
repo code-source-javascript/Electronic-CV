@@ -1,10 +1,13 @@
 import { Schema, SchemaTypes, model } from "mongoose";
 
 const CVSchema = new Schema({
-  name: {
+  fname: {
     type: SchemaTypes.String,
   },
-  position: {
+  lname: {
+    type: SchemaTypes.String,
+  },
+  occupation: {
     type: SchemaTypes.String,
   },
   email: {
@@ -22,9 +25,6 @@ const CVSchema = new Schema({
       link: { type: SchemaTypes.String },
     },
   ],
-  position: {
-    type: SchemaTypes.String,
-  },
   personlity: [{ type: SchemaTypes.String }],
   skills: [{ type: SchemaTypes.String }],
   experience: [
