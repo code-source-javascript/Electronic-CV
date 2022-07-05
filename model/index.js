@@ -1,6 +1,5 @@
 import PostModel from "./post";
 import UserModel from "./user";
-import AgentModel from "./agent";
-import AgencyModel from "./agency";
+import CVModel from "./cv";
 
-export { PostModel, UserModel, AgencyModel, AgentModel };
+export { PostModel, UserModel, CVModel };

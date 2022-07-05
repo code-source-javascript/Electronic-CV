@@ -50,3 +50,7 @@ const CVSchema = new Schema({
     },
   ],
 });
+
+const CVModel = model("CV", CVSchema);
+
+export default CVModel;
