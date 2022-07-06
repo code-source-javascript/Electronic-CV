@@ -4,7 +4,7 @@ import {
   GraphQLList,
   GraphQLID,
 } from "graphql";
-import { PostModel, UserModel } from "../model";
+import { PostModel, UserModel } from "../../model";
 import CVType from "./cv";
 import PostType from "./post";
 

@@ -4,7 +4,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from "graphql";
-import { UserModel } from "../model";
+import { UserModel } from "../../model";
 import UserType from "./user";
 
 const CommentType = new GraphQLObjectType({

@@ -8,8 +8,8 @@ import {
   getUserPosts,
   getUsers,
 } from "../services/query";
-import PostType from "./post";
-import UserType from "./user";
+import PostType from "./graph-types/post";
+import UserType from "./graph-types/user";
 
 const query = new GraphQLObjectType({
   name: "Query",
