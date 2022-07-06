@@ -47,8 +47,12 @@ const CVType = new GraphQLObjectType({
       type: new GraphQLEnumType({
         name: "Gender",
         values: {
-          MALE: "Male",
-          FEMALE: "Female",
+          MALE: {
+            value: "Male",
+          },
+          FEMALE: {
+            value: "Female",
+          },
         },
       }),
     },

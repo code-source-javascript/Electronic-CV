@@ -1,28 +1,28 @@
-import { Schema, model, SchemaTypes } from "mongoose";
+import mongoose from "mongoose";
 
-const PostSchema = new Schema({
+const PostSchema = new mongoose.Schema({
   description: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   image: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
 
   like: [
     {
-      type: SchemaTypes.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
     },
   ],
   comment: [
     {
-      body: { type: SchemaTypes.String },
-      user: { type: SchemaTypes.ObjectId, ref: "User" },
-      date: { type: SchemaTypes.Date },
+      body: { type: mongoose.SchemaTypes.String },
+      user: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
+      date: { type: mongoose.SchemaTypes.Date },
     },
   ],
 });
 
-const PostModel = model("Post", PostSchema);
+const PostModel = mongoose.model("Post", PostSchema);
 
 export default PostModel;

@@ -1,63 +1,63 @@
-import { Schema, SchemaTypes, model } from "mongoose";
+import mongoose from "mongoose";
 
-const CVSchema = new Schema({
+const CVSchema = new mongoose.Schema({
   fname: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   lname: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   othername: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   gender: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
     enum: ["Male", "Female"],
   },
   occupation: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   email: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   phone: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   address: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
   },
   socials: [
     {
-      name: { type: SchemaTypes.String },
-      link: { type: SchemaTypes.String },
+      name: { type: mongoose.SchemaTypes.String },
+      link: { type: mongoose.SchemaTypes.String },
     },
   ],
-  personlity: [{ type: SchemaTypes.String }],
-  skills: [{ type: SchemaTypes.String }],
+  personlity: [{ type: mongoose.SchemaTypes.String }],
+  skills: [{ type: mongoose.SchemaTypes.String }],
   experience: [
     {
-      position: { type: SchemaTypes.String },
-      company: { type: SchemaTypes.String },
-      from: { type: SchemaTypes.String },
-      to: { type: SchemaTypes.String },
+      position: { type: mongoose.SchemaTypes.String },
+      company: { type: mongoose.SchemaTypes.String },
+      from: { type: mongoose.SchemaTypes.String },
+      to: { type: mongoose.SchemaTypes.String },
       responsibility: [
         {
-          type: SchemaTypes.String,
+          type: mongoose.SchemaTypes.String,
         },
       ],
     },
   ],
   education: [
     {
-      certification: { type: SchemaTypes.String },
-      institution: { type: SchemaTypes.String },
-      address: { type: SchemaTypes.String },
-      from: { type: SchemaTypes.String },
-      to: { type: SchemaTypes.String },
+      certification: { type: mongoose.SchemaTypes.String },
+      institution: { type: mongoose.SchemaTypes.String },
+      address: { type: mongoose.SchemaTypes.String },
+      from: { type: mongoose.SchemaTypes.String },
+      to: { type: mongoose.SchemaTypes.String },
     },
   ],
 });
 
-const CVModel = model("CV", CVSchema);
+const CVModel = mongoose.model("CV", CVSchema);
 
 export default CVModel;

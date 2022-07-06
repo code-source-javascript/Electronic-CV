@@ -1,50 +1,50 @@
-import { Schema, SchemaTypes, model } from "mongoose";
+import mongoose from "mongoose";
 
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
   name: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
     required: true,
   },
   phone: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
     required: true,
   },
   email: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
     required: true,
   },
   username: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
     required: true,
   },
   password: {
-    type: SchemaTypes.String,
+    type: mongoose.SchemaTypes.String,
     required: true,
   },
   cv: {
-    type: SchemaTypes.ObjectId,
+    type: mongoose.SchemaTypes.ObjectId,
     ref: "CV",
   },
   following: [
     {
-      type: SchemaTypes.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
     },
   ],
   followers: [
     {
-      type: SchemaTypes.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
     },
   ],
   posts: [
     {
-      type: SchemaTypes.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "Post",
     },
   ],
 });
 
-const UserModel = model("User", UserSchema);
+const UserModel = mongoose.model("User", UserSchema);
 
 export default UserModel;

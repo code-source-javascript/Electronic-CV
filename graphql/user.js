@@ -10,7 +10,7 @@ import PostType from "./post";
 
 const UserType = new GraphQLObjectType({
   name: "User",
-  fields: {
+  fields: () => ({
     _id: {
       type: GraphQLID,
     },
@@ -32,36 +32,37 @@ const UserType = new GraphQLObjectType({
         return await UserModel.findById(parent.cv);
       },
     },
-  },
-  following: {
-    type: new GraphQLList(UserType),
-    resolve: async (parent, args) => {
-      const following = Array(parent.following).map(async (element) => {
-        return await UserModel.findOne(element);
-      });
 
-      return following;
-    },
-  },
-  followers: {
-    type: new GraphQLList(UserType),
-    resolve: async (parent, args) => {
-      const follower = await Array(parent.follower).map(async (element) => {
-        return await UserModel.findOne(element);
-      });
+    following: {
+      type: new GraphQLList(UserType),
+      resolve: async (parent, args) => {
+        const following = Array(parent.following).map(async (element) => {
+          return await UserModel.findOne(element);
+        });
 
-      return follower;
+        return following;
+      },
     },
-  },
-  posts: {
-    type: new GraphQLList(PostType),
-    resolve: async (parent, args) => {
-      const posts = Array(parent.posts).map(async (element) => {
-        return await PostModel.findById(element);
-      });
-      return posts;
+    followers: {
+      type: new GraphQLList(UserType),
+      resolve: async (parent, args) => {
+        const follower = await Array(parent.follower).map(async (element) => {
+          return await UserModel.findOne(element);
+        });
+
+        return follower;
+      },
     },
-  },
+    posts: {
+      type: new GraphQLList(PostType),
+      resolve: async (parent, args) => {
+        const posts = Array(parent.posts).map(async (element) => {
+          return await PostModel.findById(element);
+        });
+        return posts;
+      },
+    },
+  }),
 });
 
 export default UserType;

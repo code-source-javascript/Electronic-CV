@@ -9,7 +9,7 @@ import UserType from "./user";
 
 const CommentType = new GraphQLObjectType({
   name: "Comment",
-  fields: {
+  fields: () => ({
     body: {
       type: GraphQLString,
     },
@@ -23,12 +23,12 @@ const CommentType = new GraphQLObjectType({
     date: {
       type: GraphQLString,
     },
-  },
+  }),
 });
 
 const PostType = new GraphQLObjectType({
   name: "Post",
-  fields: {
+  fields: () => ({
     _id: {
       type: GraphQLID,
     },
@@ -51,7 +51,7 @@ const PostType = new GraphQLObjectType({
     comment: {
       type: new GraphQLList(CommentType),
     },
-  },
+  }),
 });
 
 export default PostType;
