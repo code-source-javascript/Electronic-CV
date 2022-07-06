@@ -1,63 +1,42 @@
 import { GraphQLList, GraphQLObjectType } from "graphql";
 import { PostModel, UserModel } from "../model";
+import {
+  getFollowingPosts,
+  getPost,
+  getPosts,
+  getUser,
+  getUserPosts,
+  getUsers,
+} from "../services/query";
 import PostType from "./post";
 import UserType from "./user";
 
 const query = new GraphQLObjectType({
   name: "Query",
   fields: {
-    getUser: {
+    User: {
       type: UserType,
-      resolve: async (parent, args) => {
-        const user = await UserModel.findOne({ _id: args.userId });
-        return user;
-      },
+      resolve: (_, args, context) => getUser(args, context),
     },
-    getUsers: {
+    Users: {
       type: new GraphQLList(UserType),
-      resolve: async () => {
-        const users = await UserModel.find();
-        return users;
-      },
+      resolve: (_, args, context) => getUsers(args, context),
     },
-    getPost: {
+    Post: {
       type: PostType,
-      resolve: async (parent, args) => {
-        const post = await PostModel.findOne({ _id: args.postId });
-        return post;
-      },
+      resolve: (_, args, context) => getPost(args, context),
     },
-    getPosts: {
+    Posts: {
       type: new GraphQLList(PostType),
-      resolve: async () => {
-        const posts = await PostModel.find();
-        return posts;
-      },
+      resolve: (_, args, context) => getPosts(args, context),
     },
-    getUserPosts: {
+    UserPosts: {
       type: new GraphQLList(PostType),
-      resolve: async (parent, args) => {
-        const user = await UserModel.findOne({ _id: args.userId }).populate(
-          "posts"
-        );
-        const userPosts = user.posts;
-        return userPosts;
-      },
+      resolve: (_, args, context) => getUserPosts(args, context),
     },
-    getFollowingPosts: {
+    FollowingPosts: {
       type: new GraphQLList(PostType),
-      resolve: async (parent, args, { _user }) => {
-        const post = [];
-        const user = await UserModel.findOne({ _id: _user });
-        const following = user.following;
-        Array(following).forEach(async (element) => {
-          let userPost = await PostModel.find({ user: element });
-          if (userPost) {
-            post.concat(userPost);
-          }
-        });
-        return post;
-      },
+      resolve: async (_, args, context) => getFollowingPosts(args, context),
     },
   },
 });
