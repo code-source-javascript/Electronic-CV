@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
+  owner: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "User",
+  },
   description: {
     type: mongoose.SchemaTypes.String,
   },
