@@ -6,6 +6,14 @@ import {
   GraphQLString,
 } from "graphql";
 
+const SocialType = new GraphQLObjectType({
+  name: "Social",
+  fields: {
+    name: { type: GraphQLString },
+    link: { type: GraphQLString },
+  },
+});
+
 const ExperienceType = new GraphQLObjectType({
   name: "Experience",
   fields: {
@@ -69,15 +77,7 @@ const CVType = new GraphQLObjectType({
       type: GraphQLString,
     },
     socials: {
-      type: new GraphQLList(
-        new GraphQLObjectType({
-          name: "Social",
-          fields: {
-            name: GraphQLString,
-            link: GraphQLString,
-          },
-        })
-      ),
+      type: new GraphQLList(SocialType),
     },
     personality: {
       type: new GraphQLList(GraphQLString),
