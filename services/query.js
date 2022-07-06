@@ -38,14 +38,10 @@ export async function getPosts(args, context) {
   }
 }
 
-export async function getUserPosts(args, context) {
+export async function getUserPosts(args, { _user }) {
   try {
-    const user = await UserModel.findOne({ _id: args.userId }).populate(
-      "posts"
-    );
-    if (!user) throw new Error("user not found");
-    const userPosts = user.posts;
-    return userPosts;
+    const posts = await PostModel.find({ owner: args.userId ?? _user });
+    return posts;
   } catch (error) {
     throw error;
   }
@@ -53,17 +49,17 @@ export async function getUserPosts(args, context) {
 
 export async function getFollowingPosts(args, { _user }) {
   try {
-    let post = [];
+    let posts = [];
     const user = await UserModel.findOne({ _id: _user });
     if (!user) throw new Error("user not found");
     const following = user.following;
     Array(following).forEach(async (element) => {
-      let userPost = await PostModel.find({ user: element });
+      let userPost = await PostModel.find({ owner: element });
       if (userPost) {
-        post = post.concat(userPost);
+        posts = posts.concat(userPost);
       }
     });
-    return post;
+    return posts;
   } catch (error) {
     throw error;
   }

@@ -5,6 +5,7 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from "graphql";
+import UserType from "./user";
 
 const SocialType = new GraphQLObjectType({
   name: "Social",
@@ -38,9 +39,12 @@ const EducationType = new GraphQLObjectType({
 
 const CVType = new GraphQLObjectType({
   name: "CV",
-  fields: {
+  fields: () => ({
     _id: {
       type: GraphQLID,
+    },
+    owner: {
+      type: UserType,
     },
     fname: {
       type: GraphQLString,
@@ -87,7 +91,7 @@ const CVType = new GraphQLObjectType({
     },
     education: { type: new GraphQLList(EducationType) },
     experience: { type: new GraphQLList(ExperienceType) },
-  },
+  }),
 });
 
 export default CVType;

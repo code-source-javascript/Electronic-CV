@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const CVSchema = new mongoose.Schema({
+  owner: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "User",
+  },
   fname: {
     type: mongoose.SchemaTypes.String,
   },

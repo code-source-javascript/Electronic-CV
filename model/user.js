@@ -21,10 +21,6 @@ const UserSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.String,
     required: true,
   },
-  cv: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: "CV",
-  },
   following: [
     {
       type: mongoose.SchemaTypes.ObjectId,
@@ -35,12 +31,6 @@ const UserSchema = new mongoose.Schema({
     {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
-    },
-  ],
-  posts: [
-    {
-      type: mongoose.SchemaTypes.ObjectId,
-      ref: "Post",
     },
   ],
 });

@@ -4,9 +4,7 @@ import {
   GraphQLList,
   GraphQLID,
 } from "graphql";
-import { PostModel, UserModel } from "../../model";
-import CVType from "./cv";
-import PostType from "./post";
+import { UserModel } from "../../model";
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -26,12 +24,6 @@ const UserType = new GraphQLObjectType({
     username: {
       type: GraphQLString,
     },
-    cv: {
-      type: CVType,
-      resolve: async (parent, args) => {
-        return await UserModel.findById(parent.cv);
-      },
-    },
 
     following: {
       type: new GraphQLList(UserType),
@@ -46,20 +38,11 @@ const UserType = new GraphQLObjectType({
     followers: {
       type: new GraphQLList(UserType),
       resolve: async (parent, args) => {
-        const follower = await Array(parent.follower).map(async (element) => {
+        const follower = Array(parent.follower).map(async (element) => {
           return await UserModel.findOne(element);
         });
 
         return follower;
-      },
-    },
-    posts: {
-      type: new GraphQLList(PostType),
-      resolve: async (parent, args) => {
-        const posts = Array(parent.posts).map(async (element) => {
-          return await PostModel.findById(element);
-        });
-        return posts;
       },
     },
   }),

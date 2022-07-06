@@ -32,6 +32,9 @@ const PostType = new GraphQLObjectType({
     _id: {
       type: GraphQLID,
     },
+    owner: {
+      type: UserType,
+    },
     description: {
       type: GraphQLString,
     },
