@@ -1,5 +1,13 @@
 import { GraphQLObjectType } from "graphql";
-import { createUser, deleteUser, updateUser } from "../services/mutation";
+import {
+  createPost,
+  createUser,
+  deletePost,
+  deleteUser,
+  updatePost,
+  updateUser,
+} from "../services/mutation";
+import PostType from "./graph-types/post";
 import UserType from "./graph-types/user";
 
 const mutation = new GraphQLObjectType({
@@ -16,6 +24,18 @@ const mutation = new GraphQLObjectType({
     DeleteUser: {
       type: UserType,
       resolve: (_, args, context) => deleteUser(args, context),
+    },
+    CreatePost: {
+      type: PostType,
+      resolve: (_, args, context) => createPost(args, context),
+    },
+    UpdatePost: {
+      type: PostType,
+      resolve: (_, args, context) => updatePost(args, context),
+    },
+    DeletePost: {
+      type: PostType,
+      resolve: (_, args, context) => deletePost(args, context),
     },
   },
 });

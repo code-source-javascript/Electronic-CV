@@ -1,4 +1,4 @@
-import { UserModel } from "../model";
+import { PostModel, UserModel } from "../model";
 
 export async function createUser({ input }, context) {
   try {
@@ -56,6 +56,10 @@ export async function logoutUser({ input }, { _user }) {
 
 export async function createPost({ input }, { _user }) {
   try {
+    if (_user) throw new Error("user not available");
+    const post = new PostModel({ ...input, owner: _user });
+    await post.save();
+    return post;
   } catch (error) {
     throw error;
   }
@@ -63,6 +67,14 @@ export async function createPost({ input }, { _user }) {
 
 export async function updatePost({ input }, { _user }) {
   try {
+    const post = await PostModel.findOneAndUpdate(
+      {
+        $and: [{ _id: input.id }, { owner: _user }],
+      },
+      { ...input }
+    );
+    if (!post) throw new Error("post not found");
+    return post;
   } catch (error) {
     throw error;
   }
@@ -70,6 +82,9 @@ export async function updatePost({ input }, { _user }) {
 
 export async function deletePost({ input }, { _user }) {
   try {
+    const post = await PostModel.findOneAndDelete({ _id: input.postId });
+    if (!post) throw new Error("post not found");
+    return post;
   } catch (error) {
     throw error;
   }
